@@ -1,0 +1,28 @@
+# ~/.gemini/commands/git/commit.toml
+
+description = "Generates a Conventional Commit message for staged changes in a specific folder."
+prompt = """
+You are an expert at writing Git commit messages that follow the Conventional Commits specification.
+
+Your task is to generate a commit message for the staged changes in the folder provided by the user.
+
+The user has provided two arguments: the JIRA ticket ID (`{{args_0}}`) and the folder path (`{{args_1}}`).
+
+Please analyze the following git diff for the staged files in that folder:
+```diff
+!{git diff --staged {{args_1}}}
+
+Now, create a single-line commit message adhering to these strict rules:
+
+Format: The message MUST be in the format <type>(<scope>): <description>.
+
+<type>: You MUST choose one of the following types based on the changes you see in the diff: feat, fix, docs, style, refactor, test, chore, build.
+
+<scope>: You MUST use the JIRA ID {{args_0}} as the scope.
+
+<description>: Write a concise, imperative-mood description of the changes (e.g., "add user login endpoint," not "added the user login endpoint").
+
+Length: The entire line MUST NOT exceed 72 characters.
+
+Your final output should be ONLY the single-line commit message and nothing else.
+"""
