@@ -1,0 +1,32 @@
+# ~/.gemini/commands/py/explain.toml
+
+description = "Analyzes a Python file and generates a detailed explanation of each function."
+prompt = """
+You are an expert Python programmer and technical writer, skilled at creating clear and concise documentation.
+
+Please analyze the following Python code, which I am providing from the file `{{args}}`:
+
+```python
+!{cat {{args}}}
+
+For each function in this file, generate a detailed explanation in Markdown format file format called `analysis.md` into the same directory of python file. Follow this structure precisely for every function:
+
+function_name()
+Purpose: A single, clear sentence explaining what the function does.
+
+Parameters:
+
+param_name (type): Description of the parameter.
+
+Returns:
+
+(type): Description of what the function returns.
+
+Example Usage:
+
+Python
+
+# A simple, self-contained code snippet showing how to use the function.
+Notes: Mention any important details, potential edge cases, or dependencies.
+
+"""
